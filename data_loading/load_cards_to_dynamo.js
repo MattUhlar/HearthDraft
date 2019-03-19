@@ -33,11 +33,23 @@ const stringifyAttribute = (card, attribute) => {
 fs.readFile('cards.collectible.json', 'utf-8', (err, contents) => {
 	contents = JSON.parse(contents.trim());
 
+	const x = _.chain(contents)
+		.filter(card => card.type !== 'HERO')
+		.map(card => _.extend(card, {'cardId': card.id}))
+		.map(card => _.omit(card, 'id'))
+		.map(card => stringifyAttribute(card, 'playRequirements'))
+		.groupBy(card => card.cardClass)
+		.()
+
+	console.log(_.keys(x));
+
+	/*
 	_.chain(contents)
 		.filter(card => card.type !== 'HERO')
 		.map(card => _.extend(card, {'cardId': card.id}))
 		.map(card => _.omit(card, 'id'))
 		.map(card => stringifyAttribute(card, 'playRequirements'))
 		.each(card => writeCardToGraphQL(card));
+		*/
 });
 

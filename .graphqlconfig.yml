@@ -1,0 +1,18 @@
+projects:
+  HearthDraft:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        graphQLApiId: x6ebruy2ajax5cvfqnotislk2u
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        region: us-west-2
+        maxDepth: 2
+      endpoints:
+        prod: >-
+          https://xondlker2neinfm5jwl72r44hi.appsync-api.us-west-2.amazonaws.com/graphql
